@@ -15,14 +15,13 @@ import java.util.HashMap;
 @RestController
 @RequestMapping(value = "/api/v1")
 @RequiredArgsConstructor
-@Validated
 public class SenderController implements SenderApi {
 
     private final SenderService service;
 
     @Override
     @PostMapping(value = "/message", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public SuccessResponse send(@Valid @RequestBody SendMessageRequest request) {
+    public SuccessResponse send(@RequestBody SendMessageRequest request) {
         return service.send(request);
     }
 }
