@@ -43,6 +43,9 @@ public class SenderServiceImpl implements SenderService {
 
     @Override
     public SuccessResponse send(SendMessageRequest request) {
+        if (request != null) {
+            fromEmail = request.getFromEmail();
+        }
         Properties props = new Properties();
         props.put("mail.smtp.host", mailSmtpHost);
         props.put("mail.smtp.socketFactory.port", mailSmtpSocketFactoryPort);
