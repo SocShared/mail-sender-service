@@ -14,18 +14,18 @@ build:
   script: ./gradlew clean build
   artifacts:
     paths:
-      - build/libs/socshared-microservice-template-1.0.0-SNAPSHOT.jar
+      - build/libs/socshared-mail-sender-service-1.0.0-SNAPSHOT.jar
 
 docker-build:
   stage: docker-build
   script:
-    - docker build -t $CI_DOCKER_LOGIN/socshared-microservice-template .
+    - docker build -t $CI_DOCKER_LOGIN/socshared-mail-sender-service .
 
 docker-push:
   stage: docker-push
   script:
     - docker login -u "$CI_DOCKER_LOGIN" -p "$CI_DOCKER_PASSWORD"
-    - docker push $CI_DOCKER_LOGIN/socshared-microservice-template
+    - docker push $CI_DOCKER_LOGIN/socshared-mail-sender-service
 
 docker-deploy-swarm:
   stage: docker-deploy-swarm
