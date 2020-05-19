@@ -34,5 +34,5 @@ bootJar {
 }
 
 springBoot {
-    mainClassName = 'ml.socshared.template.Application'
+    mainClassName = 'ml.socshared.service.mail.Application'
 }
