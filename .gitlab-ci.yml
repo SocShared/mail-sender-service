@@ -19,15 +19,21 @@ build:
 docker-build:
   stage: docker-build
   script:
-    - sudo docker build -t $CI_DOCKER_LOGIN/socshared-microservice-template .
+    - docker build -t $CI_DOCKER_LOGIN/socshared-microservice-template .
 
 docker-push:
   stage: docker-push
   script:
-    - sudo docker login -u "$CI_DOCKER_LOGIN" -p "$CI_DOCKER_PASSWORD"
-    - sudo docker push $CI_DOCKER_LOGIN/socshared-microservice-template
+    - docker login -u "$CI_DOCKER_LOGIN" -p "$CI_DOCKER_PASSWORD"
+    - docker push $CI_DOCKER_LOGIN/socshared-microservice-template
 
 docker-deploy-swarm:
   stage: docker-deploy-swarm
   script:
-    - sudo docker stack deploy -c docker-compose.yaml socshared
+    - touch .env_mail
+    - echo "SPRING_PROFILE=dev" >> .env_mail
+    - echo "MAIL_USERNAME=support@socshared.ml" >> .env_mail
+    - echo "MAIL_PASSWORD=Admin12345" >> .env_mail
+    - echo "MAIL_SMTP_HOST=smtp.mail.ru" >> .env_mail
+    - echo "MAIL_FROM_EMAIL=support@socshared.ml" >> .env_mail
+    - docker stack deploy -c docker-compose.yaml socshared

@@ -1,10 +1,10 @@
 server:
-  port: 8080
+  port: 8585
   error:
     whitelabel:
       enabled: false
 spring:
   application:
-    name: socshared-microservice-template
+    name: socshared-mail-sender-service
   profiles:
     active: ${SPRING_PROFILE:local}

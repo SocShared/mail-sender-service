@@ -23,12 +23,13 @@ dependencies {
     implementation 'com.h2database:h2'
     implementation 'org.postgresql:postgresql'
     implementation 'com.google.guava:guava:28.1-jre'
+    implementation 'javax.mail:mail:1.4.7'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }
 
 bootJar {
-    baseName = 'socshared-microservice-template'
+    baseName = 'socshared-mail-sender-service'
     version = '1.0.0-SNAPSHOT'
 }
 
