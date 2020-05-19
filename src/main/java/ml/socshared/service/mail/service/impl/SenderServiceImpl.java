@@ -43,7 +43,7 @@ public class SenderServiceImpl implements SenderService {
 
     @Override
     public SuccessResponse send(SendMessageRequest request) {
-        if (request != null) {
+        if (request.getFromEmail() != null) {
             fromEmail = request.getFromEmail();
         }
         Properties props = new Properties();
