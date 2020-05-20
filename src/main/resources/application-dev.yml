@@ -6,13 +6,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
-    username: ${RABBITMQ_USERNAME}
-    password: ${RABBITMQ_PASSWORD}
-
-
 mail:
   username: ${MAIL_USERNAME}
   password: ${MAIL_PASSWORD}
@@ -24,4 +17,3 @@ mail:
     port: 465
   from:
     email: ${MAIL_FROM_EMAIL}
-

@@ -24,8 +24,6 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     implementation 'com.google.guava:guava:28.1-jre'
     implementation 'javax.mail:mail:1.4.7'
-    implementation 'org.springramework.boot:spring-boot-starter-amqp'
-    implementation 'org.springframework.amqp:spring-rabbit:2.2.6.RELEASE'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }
