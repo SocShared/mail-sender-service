@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import ml.socshared.service.mail.domain.SendMessageRequest;
 import ml.socshared.service.mail.domain.SuccessResponse;
 import ml.socshared.service.mail.service.SenderService;
+import ml.socshared.service.mail.service.sentry.SentryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,15 +13,14 @@ import org.springframework.stereotype.Service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class SenderServiceImpl implements SenderService {
 
     @Value("${mail.username}")
@@ -40,6 +40,7 @@ public class SenderServiceImpl implements SenderService {
     @Value("${mail.from.email}")
     private String fromEmail;
 
+    private final SentryService sentryService;
 
     @Override
     public SuccessResponse send(SendMessageRequest request) {
@@ -71,6 +72,12 @@ public class SenderServiceImpl implements SenderService {
                     message.setSubject(request.getSubject());
                     message.setContent(request.getText(), "text/html; charset=utf-8");
 
+                    Map<String, String> tags = new HashMap<>();
+                    tags.put("type", "send_email");
+                    Map<String, Object> extras = new HashMap<>();
+                    extras.put("from_email", fromEmail);
+                    extras.put("to_email", request.getToEmails().toString());
+                    sentryService.logMessage("Send message", tags, extras);
                     Transport.send(message);
                 } catch (MessagingException exc) {
                     log.error(exc.getMessage());

@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     implementation 'com.google.guava:guava:28.1-jre'
     implementation 'javax.mail:mail:1.4.7'
+    implementation 'io.sentry:sentry-spring:1.7.23'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }
