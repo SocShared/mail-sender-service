@@ -36,4 +36,6 @@ docker-deploy-swarm:
     - echo "MAIL_PASSWORD=Admin12345" >> .env_mail
     - echo "MAIL_SMTP_HOST=smtp.mail.ru" >> .env_mail
     - echo "MAIL_FROM_EMAIL=support@socshared.ml" >> .env_mail
+    - echo "RABBITMQ_USERNAME=$RABBITMQ_USERNAME" >> .env_mail
+    - echo "RABBITMQ_PASSWORD=$RABBITMQ_PASSWORD" >> .env_mail
     - docker stack deploy -c docker-compose.yaml socshared
