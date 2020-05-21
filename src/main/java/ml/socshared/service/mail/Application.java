@@ -3,6 +3,7 @@
  */
 package ml.socshared.service.mail;
 
+import io.sentry.Sentry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -13,6 +14,7 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        Sentry.init("https://705caee204a947ca80c10cfe7682afff@sentry.socshared.ml/3");
     }
 
 }
