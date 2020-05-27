@@ -8,3 +8,7 @@ spring:
     name: socshared-mail-sender-service
   profiles:
     active: ${SPRING_PROFILE:local}
+
+feign:
+  url:
+    auth: ${AUTH_SERVICE:https://auth.socshared.ml}
