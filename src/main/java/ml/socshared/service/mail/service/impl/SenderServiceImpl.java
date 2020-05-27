@@ -91,7 +91,6 @@ public class SenderServiceImpl implements SenderService {
     public SuccessResponse send(SendMessageMailConfirmRequest request) {
         SendMessageRequest sendMessageRequest = SendMessageRequest.builder()
                 .subject(request.getSubject())
-                .fromEmail(request.getFromEmail())
                 .toEmails(new ArrayList<>() {{add(request.getToEmail());}})
                 .text("Здравствуйте, " + request.getUsername() + ".<br><br>Для того, чтобы воспользоваться всеми услугами сервиса SocShared, " +
                         "подтвердите, пожалуйста, Вашу электронную почту, перейдя по следующей ссылке, <a href=\""+request.getLink()+"\">Подтвердить почту</a>. " +

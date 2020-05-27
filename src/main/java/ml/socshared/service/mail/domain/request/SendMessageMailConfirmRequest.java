@@ -22,8 +22,5 @@ public class SendMessageMailConfirmRequest {
     @NotNull
     @Email
     private String toEmail;
-    @NotNull
-    @Email
-    private String fromEmail;
 
 }
