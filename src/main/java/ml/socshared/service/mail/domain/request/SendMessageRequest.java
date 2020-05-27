@@ -17,8 +17,6 @@ public class SendMessageRequest {
     private String text;
     @NotNull
     private String subject;
-    @NotNull
-    @Email
     private String fromEmail;
     @NotNull
     private ArrayList<String> toEmails;
