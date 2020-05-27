@@ -2,11 +2,11 @@ package ml.socshared.service.mail.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ml.socshared.service.mail.domain.SendMessageRequest;
-import ml.socshared.service.mail.domain.SuccessResponse;
+import ml.socshared.service.mail.domain.request.SendMessageMailConfirmRequest;
+import ml.socshared.service.mail.domain.request.SendMessageRequest;
+import ml.socshared.service.mail.domain.response.SuccessResponse;
 import ml.socshared.service.mail.service.SenderService;
 import ml.socshared.service.mail.service.sentry.SentryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,6 @@ import javax.mail.internet.MimeMessage;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @Service
 @Slf4j
@@ -86,5 +85,20 @@ public class SenderServiceImpl implements SenderService {
         });
 
         return SuccessResponse.builder().success(true).build();
+    }
+
+    @Override
+    public SuccessResponse send(SendMessageMailConfirmRequest request) {
+        SendMessageRequest sendMessageRequest = SendMessageRequest.builder()
+                .subject(request.getSubject())
+                .fromEmail(request.getFromEmail())
+                .toEmails(new ArrayList<>() {{add(request.getToEmail());}})
+                .text("Здравствуйте, " + request.getUsername() + ".<br><br>Для того, чтобы воспользоваться всеми услугами сервиса SocShared, " +
+                        "подтвердите, пожалуйста, Вашу электронную почту, перейдя по следующей ссылке, <a href=\""+request.getLink()+"\">Подтвердить почту</a>. " +
+                        "Срок действия данной ссылки 24 часа.<br><br>" + "" +
+                        "С уважением, администрация сервиса SocShared.")
+                .build();
+
+        return send(sendMessageRequest);
     }
 }

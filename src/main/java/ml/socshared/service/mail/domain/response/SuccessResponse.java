@@ -1,4 +1,4 @@
-package ml.socshared.service.mail.domain;
+package ml.socshared.service.mail.domain.response;
 
 import lombok.*;
 
