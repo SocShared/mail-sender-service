@@ -1,6 +1,7 @@
 package ml.socshared.service.mail.security.jwt;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RequiredArgsConstructor
+@Slf4j
 public class JwtTokenFilter extends GenericFilterBean {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -26,6 +28,7 @@ public class JwtTokenFilter extends GenericFilterBean {
             String token = jwtTokenProvider.resolveToken(httpServletRequest);
             if (token != null) {
                 if (jwtTokenProvider.validateServiceToken(token)) {
+                    log.info(token);
                     UserDetails serviceDetails = jwtTokenProvider.getServiceDetails(token);
                     Authentication auth = new UsernamePasswordAuthenticationToken(serviceDetails, "", serviceDetails.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(auth);
