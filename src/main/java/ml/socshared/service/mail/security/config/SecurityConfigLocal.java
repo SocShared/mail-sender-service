@@ -13,7 +13,7 @@ import static ml.socshared.service.mail.config.Constants.TEST_PROFILE;
 
 @Configuration
 @EnableWebSecurity
-@Profile({TEST_PROFILE})
+@Profile({TEST_PROFILE, LOCAL_PROFILE})
 @Slf4j
 public class SecurityConfigLocal extends WebSecurityConfigurerAdapter {
 

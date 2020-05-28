@@ -7,13 +7,13 @@ spring:
     allow-bean-definition-overriding: true
 
 mail:
-  username: ${MAIL_USERNAME}
-  password: ${MAIL_PASSWORD}
+  username: ${MAIL_USERNAME:support@socshared.ml}
+  password: ${MAIL_PASSWORD:Admin12345}
   smtp:
-    host: ${MAIL_SMTP_HOST}
+    host: ${MAIL_SMTP_HOST:smtp.mail.ru}
     socketFactoryPost: 465
     socketFactoryClass: javax.net.ssl.SSLSocketFactory
     auth: true
     port: 465
   from:
-    email: ${MAIL_FROM_EMAIL}
+    email: ${MAIL_FROM_EMAIL:support@socshared.ml}

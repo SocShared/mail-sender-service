@@ -20,7 +20,7 @@ import static ml.socshared.service.mail.config.Constants.LOCAL_PROFILE;
 
 @Configuration
 @EnableWebSecurity
-@Profile({Constants.DEV_PROFILE, Constants.PROD_PROFILE, LOCAL_PROFILE})
+@Profile({Constants.DEV_PROFILE, Constants.PROD_PROFILE})
 @Slf4j
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
