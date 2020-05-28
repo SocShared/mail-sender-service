@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface AuthClient {
 
     @PostMapping(value = "/api/v1/public/service/validate_token", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    SuccessResponse send(CheckTokenRequest request);
+    SuccessResponse send(@RequestBody CheckTokenRequest request);
 
 }
