@@ -19,8 +19,8 @@ public class SendMessageMailConfirmRequest {
     private String username;
     @NotNull
     private String link;
-    @NotNull
     @Email
+    @NotNull
     private String toEmail;
 
 }

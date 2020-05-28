@@ -84,7 +84,10 @@ public class SenderServiceImpl implements SenderService {
             }
         });
 
-        return SuccessResponse.builder().success(true).build();
+        SuccessResponse response = new SuccessResponse();
+        response.setSuccess(true);
+
+        return response;
     }
 
     @Override
