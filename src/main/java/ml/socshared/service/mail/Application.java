@@ -14,7 +14,7 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        Sentry.init("https://705caee204a947ca80c10cfe7682afff@sentry.socshared.ml/3");
+        Sentry.init("https://1dd165ad49bf4228a05debb8c6927797@sentry.socshared.ml/2");
     }
 
 }
