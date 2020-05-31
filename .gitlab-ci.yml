@@ -39,4 +39,5 @@ docker-deploy-swarm:
     - echo "MAIL_FROM_EMAIL=support@socshared.ml" >> .env_mail
     - echo "AUTH_SERVICE=$AUTH_SERVICE" >> .env_mail
     - echo "SECRET_JWT_KEY=$SECRET_JWT_KEY" >> .env_mail
+    - echo "SENTRY_DSN=https://1dd165ad49bf4228a05debb8c6927797@sentry.socshared.ml/2" >> .env_mail
     - docker stack deploy -c docker-compose.yaml socshared
