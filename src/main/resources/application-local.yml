@@ -6,6 +6,12 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: auditevents, beans, caches, conditions, configprops, health, httptrace, info, loggers, metrics, mappings, shutdown
+
 mail:
   username: ${MAIL_USERNAME:support@socshared.ml}
   password: ${MAIL_PASSWORD:Admin12345}
