@@ -1,7 +1,7 @@
 package ml.socshared.service.mail.controller.v1;
 
 import lombok.RequiredArgsConstructor;
-import ml.socshared.service.mail.domain.request.SendMessageMailConfirmRequest;
+import ml.socshared.service.mail.domain.request.SendMessageGeneratingCodeRequest;
 import ml.socshared.service.mail.domain.request.SendMessageRequest;
 import ml.socshared.service.mail.domain.response.SuccessResponse;
 import ml.socshared.service.mail.service.SenderService;
@@ -28,7 +28,13 @@ public class SenderController implements SenderApi {
 
     @Override
     @PostMapping(value = "/private/message/confirm/mail", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public SuccessResponse sendMailConfirm(@Valid @RequestBody SendMessageMailConfirmRequest request) {
-        return service.send(request);
+    public SuccessResponse sendMailConfirm(@Valid @RequestBody SendMessageGeneratingCodeRequest request) {
+        return service.sendMailConfirm(request);
+    }
+
+    @Override
+    @PostMapping(value = "/private/message/password/reset", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public SuccessResponse sendPasswordReset(@Valid @RequestBody SendMessageGeneratingCodeRequest request) {
+        return service.sendPasswordReset(request);
     }
 }
