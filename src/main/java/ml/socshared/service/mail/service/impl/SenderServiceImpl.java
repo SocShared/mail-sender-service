@@ -96,7 +96,7 @@ public class SenderServiceImpl implements SenderService {
                 .subject(request.getSubject())
                 .toEmails(new ArrayList<>() {{add(request.getToEmail());}})
                 .text("Здравствуйте, " + request.getUsername() + ".<br><br>Для того, чтобы воспользоваться всеми услугами сервиса SocShared, " +
-                        "подтвердите, пожалуйста, Вашу электронную почту, перейдя по следующей ссылке, <a href=\""+request.getLink()+"\">Подтвердить почту</a>. " +
+                        "подтвердите, пожалуйста, Вашу электронную почту, перейдя по следующей ссылке, <a href=\""+request.getLink()+"\">подтвердить почту</a>. " +
                         "Срок действия данной ссылки 24 часа.<br><br>" + "" +
                         "С уважением, администрация сервиса SocShared.")
                 .build();
@@ -110,7 +110,7 @@ public class SenderServiceImpl implements SenderService {
                 .subject(request.getSubject())
                 .toEmails(new ArrayList<>() {{add(request.getToEmail());}})
                 .text("Здравствуйте, " + request.getUsername() + ".<br><br>Для этого email запросили сброс пароля сервиса SocShared, " +
-                        "для того, чтобы сбросить пароль, перейдите по следующей ссылке, <a href=\""+request.getLink()+"\">Подтвердить почту</a>. " +
+                        "для того, чтобы сбросить пароль, перейдите по следующей ссылке, <a href=\""+request.getLink()+"\">сбросить пароль</a>. " +
                         "Срок действия данной ссылки 24 часа.<br>В случае, если это были не Вы, просим проигнорировать данное сообщение<br><br>" + "" +
                         "С уважением, администрация сервиса SocShared.")
                 .build();
