@@ -1,7 +1,6 @@
 package ml.socshared.service.mail.service.sentry;
 
 import io.sentry.Sentry;
-import io.sentry.event.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

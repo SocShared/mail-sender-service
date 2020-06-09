@@ -6,7 +6,8 @@ import ml.socshared.service.mail.domain.request.SendMessageGeneratingCodeRequest
 import ml.socshared.service.mail.domain.request.SendMessageRequest;
 import ml.socshared.service.mail.domain.response.SuccessResponse;
 import ml.socshared.service.mail.service.SenderService;
-import ml.socshared.service.mail.service.sentry.SentryService;
+import ml.socshared.service.mail.service.sentry.SentrySender;
+import ml.socshared.service.mail.service.sentry.SentryTag;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class SenderServiceImpl implements SenderService {
     @Value("${mail.from.email}")
     private String fromEmail;
 
-    private final SentryService sentryService;
+    private final SentrySender sentrySender;
 
     @Override
     public SuccessResponse send(SendMessageRequest request) {
@@ -71,13 +72,14 @@ public class SenderServiceImpl implements SenderService {
                     message.setSubject(request.getSubject());
                     message.setContent(request.getText(), "text/html; charset=utf-8");
 
-                    Map<String, String> tags = new HashMap<>();
-                    tags.put("type", "send_email");
+                    Transport.send(message);
+
                     Map<String, Object> extras = new HashMap<>();
                     extras.put("from_email", fromEmail);
                     extras.put("to_email", request.getToEmails().toString());
-                    sentryService.logMessage("Send message", tags, extras);
-                    Transport.send(message);
+                    extras.put("message", message);
+                    sentrySender.sentryMessage("send message - " + request.getSubject(), extras, Collections.singletonList(SentryTag.SEND_MAIL));
+
                 } catch (MessagingException exc) {
                     log.error(exc.getMessage());
                 }
