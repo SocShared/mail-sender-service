@@ -5,7 +5,7 @@ server:
       enabled: false
 spring:
   application:
-    name: socshared-mail-sender-service
+    name: mail-sender
   profiles:
     active: ${SPRING_PROFILE:dev}
 
