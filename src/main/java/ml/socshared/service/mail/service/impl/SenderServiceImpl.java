@@ -77,8 +77,8 @@ public class SenderServiceImpl implements SenderService {
                     Map<String, Object> extras = new HashMap<>();
                     extras.put("from_email", fromEmail);
                     extras.put("to_email", request.getToEmails().toString());
-                    extras.put("message", message);
-                    sentrySender.sentryMessage("send message - " + request.getSubject(), extras, Collections.singletonList(SentryTag.SEND_MAIL));
+                    extras.put("subject", request.getSubject());
+                    sentrySender.sentryMessage("send message", extras, Collections.singletonList(SentryTag.SEND_MAIL));
 
                 } catch (MessagingException exc) {
                     log.error(exc.getMessage());
